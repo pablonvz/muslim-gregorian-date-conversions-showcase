@@ -1,6 +1,10 @@
 package com.pablocastelnovo.muslim_gregorian_date_conversions_showcase;
 
 import java.time.LocalDate;
+import java.time.chrono.HijrahChronology;
+import java.time.chrono.HijrahDate;
+import java.time.chrono.HijrahEra;
+import java.time.chrono.IsoChronology;
 
 public class ConvertibleDate {
     final private java.time.LocalDate date;
@@ -27,6 +31,14 @@ public class ConvertibleDate {
 
         return java.time.LocalDateTime.ofInstant(javaInstant, java.time.ZoneOffset.UTC) //
             .toLocalDate();
+    }
+
+    public LocalDate toGregorianJavaTime() {
+        // java.time doesn't support non-proleptic Muslim years
+        final HijrahDate hijrahDate = //
+            HijrahChronology.INSTANCE.date(HijrahEra.AH, date.getYear(), date.getMonthValue(), date.getDayOfMonth());
+
+        return IsoChronology.INSTANCE.date(hijrahDate);
     }
 
 }
