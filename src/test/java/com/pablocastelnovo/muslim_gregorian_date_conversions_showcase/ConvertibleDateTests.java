@@ -39,9 +39,9 @@ public class ConvertibleDateTests {
         public Stream<? extends Arguments> provideArguments(ExtensionContext arg0) throws Exception {
             // http://www.islamicity.org/hijri-gregorian-converter
             return Stream.of( //
-                Arguments.of(LocalDate.of(1209, Month.JANUARY.getValue(), 1), LocalDate.of(1794, Month.JULY.getValue(), 29)), // non-proleptic year
-                Arguments.of(LocalDate.of(800, Month.FEBRUARY.getValue(), 10), LocalDate.of(1397, Month.NOVEMBER.getValue(), 10)), // non-proleptic year
-                Arguments.of(LocalDate.of(1437, Month.FEBRUARY.getValue(), 1), LocalDate.of(2015, Month.NOVEMBER.getValue(), 14)));
+                Arguments.of("1209-01-01", "1794-07-29"), // non-proleptic year
+                Arguments.of("0800-02-10", "1397-11-10"), // non-proleptic year
+                Arguments.of("1437-02-01", "2015-11-14"));
         }
 
     }
@@ -52,7 +52,7 @@ public class ConvertibleDateTests {
         public Stream<? extends Arguments> provideArguments(ExtensionContext arg0) throws Exception {
             // http://www.islamicity.org/hijri-gregorian-converter
             return Stream.of( //
-                Arguments.of(LocalDate.of(1437, Month.FEBRUARY.getValue(), 1), LocalDate.of(2015, Month.NOVEMBER.getValue(), 13)));
+                Arguments.of("1437-02-01", "2015-11-13")); // There is one-day difference with Joda Time
         }
     }
 
@@ -62,8 +62,8 @@ public class ConvertibleDateTests {
         public Stream<? extends Arguments> provideArguments(ExtensionContext arg0) throws Exception {
             // http://www.islamicity.org/hijri-gregorian-converter
             return Stream.of( //
-                Arguments.of(LocalDate.of(1209, Month.JANUARY.getValue(), 1)), // non-proleptic year
-                Arguments.of(LocalDate.of(800, Month.FEBRUARY.getValue(), 10)) // non-proleptic year
+                Arguments.of("1209-01-01"), // non-proleptic year
+                Arguments.of("0800-02-10") // non-proleptic year
             );
         }
     }
